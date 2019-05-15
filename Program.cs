@@ -26,7 +26,7 @@ namespace EksiXMLtoPDF
                     PdfWriter myPDFWriter = PdfWriter.GetInstance(myDocument, outStream);
                     myDocument.Open();
 
-                    foreach (var element in xdoc.Descendants("entry"))
+                    foreach (XElement element in xdoc.Descendants("entry").OrderByDescending(e => e.Attribute("date").Value))
                     {
                         Paragraph title = new Paragraph(element.Attribute("title").Value,
                                                                 FormatSettings.fontHeading);
